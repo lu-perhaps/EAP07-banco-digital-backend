@@ -1,6 +1,6 @@
 package com.udea.bancodigital.usuario.entity;
 
-import com.udea.bancodigital.common.entity.Estado;
+import com.udea.bancodigital.Common.entity.Estado;
 import jakarta.persistence.*;
 import lombok.Data;
 
