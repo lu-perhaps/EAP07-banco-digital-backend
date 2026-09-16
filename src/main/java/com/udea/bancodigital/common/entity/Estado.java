@@ -1,4 +1,4 @@
-package com.udea.bancodigital.Common.entity;
+package com.udea.bancodigital.common.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

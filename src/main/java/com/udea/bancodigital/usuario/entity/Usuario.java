@@ -1,8 +1,9 @@
 package com.udea.bancodigital.usuario.entity;
 
-import com.udea.bancodigital.Common.entity.Estado;
+import com.udea.bancodigital.common.entity.Estado;
 import jakarta.persistence.*;
 import lombok.Data;
+import java.time.OffsetDateTime;
 
 @Entity
 @Table(name = "usuarios")
@@ -20,10 +21,10 @@ public class Usuario {
     private String passwordHash;
 
     @Column(name = "fecha_creacion", nullable = false)
-    private java.time.LocalDateTime fechaCreacion;
+    private OffsetDateTime fechaCreacion;
 
     @Column(name = "cliente_id")
-    private Long clienteId; // sin @ManyToOne todavía — ver nota abajo
+    private Long clienteId;
 
     @ManyToOne
     @JoinColumn(name = "rol_id", nullable = false)
