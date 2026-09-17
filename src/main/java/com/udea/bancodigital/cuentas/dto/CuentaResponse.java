@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Data
 @Builder
@@ -15,5 +15,5 @@ public class CuentaResponse {
     private String tipoCuenta;
     private BigDecimal saldoDisponible;
     private String estado;
-    private LocalDateTime fechaApertura;
+    private OffsetDateTime fechaApertura;
 }
