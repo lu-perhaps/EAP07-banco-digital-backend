@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Entity
 @Table(name = "cuentas")
@@ -39,5 +39,5 @@ public class Cuenta {
     private Estado estado;
 
     @Column(name = "fecha_apertura", nullable = false)
-    private LocalDateTime fechaApertura;
+    private OffsetDateTime fechaApertura;
 }

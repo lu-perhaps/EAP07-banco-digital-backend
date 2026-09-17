@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.Random;
 
 @Service
@@ -71,7 +71,7 @@ public class CuentaServiceImpl implements CuentaService {
                 .tipoCuenta(tipoCuenta)
                 .saldoDisponible(BigDecimal.ZERO)
                 .estado(estadoActiva)
-                .fechaApertura(LocalDateTime.now())
+                .fechaApertura(OffsetDateTime.now())
                 .build();
 
         Cuenta cuentaGuardada = cuentaRepository.save(nuevaCuenta);
