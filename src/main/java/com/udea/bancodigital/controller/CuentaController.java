@@ -1,8 +1,8 @@
-package com.udea.bancodigital.cuentas.controller;
+package com.udea.bancodigital.controller;
 
-import com.udea.bancodigital.cuentas.dto.AperturaCuentaRequest;
-import com.udea.bancodigital.cuentas.dto.CuentaResponse;
-import com.udea.bancodigital.cuentas.service.CuentaService;
+import com.udea.bancodigital.DTO.AperturaCuentaRequest;
+import com.udea.bancodigital.DTO.CuentaResponse;
+import com.udea.bancodigital.service.CuentaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -34,3 +34,4 @@ public class CuentaController {
         return ResponseEntity.ok(response);
     }
 }
+

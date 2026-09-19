@@ -1,4 +1,4 @@
-package com.udea.bancodigital.cuentas.dto;
+package com.udea.bancodigital.DTO;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -8,3 +8,4 @@ public class AperturaCuentaRequest {
     @NotBlank(message = "El tipo de cuenta es obligatorio")
     private String tipoCuenta; // "AHORROS" o "CORRIENTE"
 }
+

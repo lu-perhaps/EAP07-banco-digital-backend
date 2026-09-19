@@ -1,13 +1,13 @@
-package com.udea.bancodigital.cuentas.service;
+package com.udea.bancodigital.service;
 
 import com.udea.bancodigital.entity.Estado;
 import com.udea.bancodigital.repository.EstadoRepository;
-import com.udea.bancodigital.cuentas.dto.AperturaCuentaRequest;
-import com.udea.bancodigital.cuentas.dto.CuentaResponse;
-import com.udea.bancodigital.cuentas.entity.Cuenta;
-import com.udea.bancodigital.cuentas.entity.TipoCuenta;
-import com.udea.bancodigital.cuentas.repository.CuentaRepository;
-import com.udea.bancodigital.cuentas.repository.TipoCuentaRepository;
+import com.udea.bancodigital.DTO.AperturaCuentaRequest;
+import com.udea.bancodigital.DTO.CuentaResponse;
+import com.udea.bancodigital.entity.Cuenta;
+import com.udea.bancodigital.entity.TipoCuenta;
+import com.udea.bancodigital.repository.CuentaRepository;
+import com.udea.bancodigital.repository.TipoCuentaRepository;
 import com.udea.bancodigital.service.NegocioException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -130,3 +130,4 @@ public class CuentaServiceImpl implements CuentaService {
                 .build();
     }
 }
+

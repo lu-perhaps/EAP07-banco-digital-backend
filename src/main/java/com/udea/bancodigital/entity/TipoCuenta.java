@@ -1,4 +1,4 @@
-package com.udea.bancodigital.cuentas.entity;
+package com.udea.bancodigital.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -19,3 +19,4 @@ public class TipoCuenta {
     @Column(nullable = false, unique = true, length = 50)
     private String nombre; // "AHORROS", "CORRIENTE"
 }
+

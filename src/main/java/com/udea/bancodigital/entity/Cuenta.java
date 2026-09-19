@@ -1,4 +1,4 @@
-package com.udea.bancodigital.cuentas.entity;
+package com.udea.bancodigital.entity;
 
 import com.udea.bancodigital.entity.Estado;
 import jakarta.persistence.*;
@@ -43,3 +43,4 @@ public class Cuenta {
     @Column(name = "fecha_apertura", nullable = false)
     private OffsetDateTime fechaApertura;
 }
+

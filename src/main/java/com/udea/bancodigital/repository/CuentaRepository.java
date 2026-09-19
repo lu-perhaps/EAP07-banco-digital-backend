@@ -1,6 +1,6 @@
-package com.udea.bancodigital.cuentas.repository;
+package com.udea.bancodigital.repository;
 
-import com.udea.bancodigital.cuentas.entity.Cuenta;
+import com.udea.bancodigital.entity.Cuenta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -22,3 +22,4 @@ public interface CuentaRepository extends JpaRepository<Cuenta, Long> {
             @Param("tipoCuentaNombre") String tipoCuentaNombre
     );
 }
+

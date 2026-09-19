@@ -1,4 +1,4 @@
-package com.udea.bancodigital.cuentas.dto;
+package com.udea.bancodigital.DTO;
 
 import lombok.Builder;
 import lombok.Data;
@@ -17,3 +17,4 @@ public class CuentaResponse {
     private String estado;
     private OffsetDateTime fechaApertura;
 }
+
