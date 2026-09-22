@@ -4,6 +4,7 @@ import com.udea.bancodigital.entity.Cuenta;
 import com.udea.bancodigital.entity.TipoTransaccion;
 import com.udea.bancodigital.entity.Transaccion;
 import com.udea.bancodigital.repository.CuentaRepository;
+import com.udea.bancodigital.repository.TipoTransaccionRepository;
 import com.udea.bancodigital.repository.TransaccionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ public class TransferenciaProcessor {
 
     private final CuentaRepository cuentaRepository;
     private final TransaccionRepository transaccionRepository;
+    private final TipoTransaccionRepository tipoTransaccionRepository;
 
     @Transactional
     public Transaccion ejecutarTransferenciaExitosa(Long origenId, Long destinoId, BigDecimal monto, Long tipoId, String descripcion) {
