@@ -1,12 +1,12 @@
-package com.udea.bancodigital.controller;
+package com.udea.bancodigital.usuarios.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.udea.bancodigital.service.NegocioException;
-import com.udea.bancodigital.config.CustomAuthEntryPoint;
-import com.udea.bancodigital.jwt.JwtAuthenticationFilter;
-import com.udea.bancodigital.DTO.MensajesRegistro;
-import com.udea.bancodigital.DTO.RegistroUsuarioResponseDTO;
-import com.udea.bancodigital.service.UsuarioService;
+import com.udea.bancodigital.shared.exception.NegocioException;
+import com.udea.bancodigital.shared.config.CustomAuthEntryPoint;
+import com.udea.bancodigital.shared.jwt.JwtAuthenticationFilter;
+import com.udea.bancodigital.usuarios.dto.MensajesRegistro;
+import com.udea.bancodigital.usuarios.dto.RegistroUsuarioResponseDTO;
+import com.udea.bancodigital.usuarios.service.UsuarioService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
@@ -118,8 +118,6 @@ class UsuarioControllerRegistroTest {
                 .andExpect(jsonPath("$.message").value("El correo ingresado ya está registrado."));
     }
 
-    // Un campo vacio rompe @NotBlank y @Pattern a la vez; debe ganar el mensaje
-    // de campo obligatorio, no el de seguridad de la contrasena.
     @Test
     void passwordVaciaPrefiereElMensajeDeCampoObligatorio() throws Exception {
         Map<String, String> cuerpo = peticionValida();
