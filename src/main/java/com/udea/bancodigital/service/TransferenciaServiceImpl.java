@@ -66,12 +66,12 @@ public class TransferenciaServiceImpl implements TransferenciaService {
         Transaccion transaccionExitosa;
         try {
             transaccionExitosa = transferenciaProcessor.ejecutarTransferenciaExitosa(
-                    cuentaOrigen, cuentaDestino, request.getMonto(), tipo, request.getDescripcion());
+                    cuentaOrigen.getId(), cuentaDestino.getId(), request.getMonto(), tipo.getId(), request.getDescripcion());
         } catch (Exception e) {
             // El débito y crédito sufren rollback automático por TransferenciaProcessor
             // Registramos la falla en una transacción nueva
             transferenciaProcessor.registrarTransferenciaFallida(
-                    cuentaOrigen, cuentaDestino, request.getMonto(), tipo, request.getDescripcion());
+                    cuentaOrigen.getId(), cuentaDestino.getId(), request.getMonto(), tipo.getId(), request.getDescripcion());
             
             throw new NegocioException("INTERNAL_ERROR", "Fallo técnico durante la acreditación. La transacción ha sido revertida.", HttpStatus.INTERNAL_SERVER_ERROR);
         }

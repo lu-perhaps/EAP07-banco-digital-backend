@@ -21,8 +21,12 @@ public class TransferenciaProcessor {
     private final TransaccionRepository transaccionRepository;
 
     @Transactional
-    public Transaccion ejecutarTransferenciaExitosa(Cuenta origen, Cuenta destino, BigDecimal monto, TipoTransaccion tipo, String descripcion) {
+    public Transaccion ejecutarTransferenciaExitosa(Long origenId, Long destinoId, BigDecimal monto, Long tipoId, String descripcion) {
         
+        Cuenta origen = cuentaRepository.findById(origenId).orElseThrow();
+        Cuenta destino = cuentaRepository.findById(destinoId).orElseThrow();
+        TipoTransaccion tipo = tipoTransaccionRepository.findById(tipoId).orElseThrow();
+
         // Debitar
         origen.setSaldoDisponible(origen.getSaldoDisponible().subtract(monto));
         cuentaRepository.save(origen);
@@ -46,7 +50,12 @@ public class TransferenciaProcessor {
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void registrarTransferenciaFallida(Cuenta origen, Cuenta destino, BigDecimal monto, TipoTransaccion tipo, String descripcion) {
+    public void registrarTransferenciaFallida(Long origenId, Long destinoId, BigDecimal monto, Long tipoId, String descripcion) {
+        
+        Cuenta origen = cuentaRepository.findById(origenId).orElseThrow();
+        Cuenta destino = cuentaRepository.findById(destinoId).orElseThrow();
+        TipoTransaccion tipo = tipoTransaccionRepository.findById(tipoId).orElseThrow();
+        
         Transaccion tx = Transaccion.builder()
                 .cuentaOrigen(origen)
                 .cuentaDestino(destino)
