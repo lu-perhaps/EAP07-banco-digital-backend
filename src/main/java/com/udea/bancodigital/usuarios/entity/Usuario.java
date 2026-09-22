@@ -1,5 +1,6 @@
 package com.udea.bancodigital.usuarios.entity;
 
+import com.udea.bancodigital.shared.entity.Estado;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

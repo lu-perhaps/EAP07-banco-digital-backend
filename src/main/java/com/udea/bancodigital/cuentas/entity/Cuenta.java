@@ -1,5 +1,6 @@
 package com.udea.bancodigital.cuentas.entity;
 
+import com.udea.bancodigital.shared.entity.Estado;
 import jakarta.persistence.*;
 import lombok.*;
 

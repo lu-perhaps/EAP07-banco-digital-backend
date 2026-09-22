@@ -1,10 +1,15 @@
-package com.udea.bancodigital.usuarios.entity;
+package com.udea.bancodigital.shared.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Entidad compartida del catálogo de tipos de estado.
+ * Reside en `shared` porque tanto el módulo `usuarios` como `cuentas`
+ * referencian la misma tabla `tipo_estado` de la base de datos.
+ */
 @Entity
 @Table(name = "tipo_estado")
 @Data
@@ -19,22 +24,13 @@ public class TipoEstado {
     @Column(nullable = false)
     private String nombre;
 
-    // @Data genera equals/hashCode sobre todos los campos, lo que rompe con
-    // entidades JPA: dos instancias de la misma fila dejan de ser iguales en
-    // cuanto una carga perezosa cambia cualquier atributo. Solo cuenta el id.
     @Override
     public boolean equals(Object objeto) {
-        if (this == objeto) {
-            return true;
-        }
-        if (!(objeto instanceof TipoEstado otro)) {
-            return false;
-        }
+        if (this == objeto) return true;
+        if (!(objeto instanceof TipoEstado otro)) return false;
         return id != null && id.equals(otro.id);
     }
 
-    // Constante a proposito: el id es null antes de persistir, asi que hashearlo
-    // sacaria a la entidad de cualquier HashSet donde ya estuviera.
     @Override
     public int hashCode() {
         return getClass().hashCode();
