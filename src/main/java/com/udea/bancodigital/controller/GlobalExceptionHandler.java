@@ -91,7 +91,7 @@ public class GlobalExceptionHandler {
 
         return construirRespuesta(
                 HttpStatus.INTERNAL_SERVER_ERROR, "INTERNAL_ERROR",
-                "Ocurrio un error inesperado", null, request
+                "Error inesperado: " + exception.getMessage(), null, request
         );
     }
 }

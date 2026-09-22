@@ -3,6 +3,7 @@ package com.udea.bancodigital.controller;
 import com.udea.bancodigital.DTO.AperturaCuentaRequest;
 import com.udea.bancodigital.DTO.CuentaResponse;
 import com.udea.bancodigital.service.CuentaService;
+import com.udea.bancodigital.service.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 public class CuentaController {
 
     private final CuentaService cuentaService;
+    private final UsuarioService usuarioService;
 
     @Operation(
             summary = "Solicitar apertura de cuenta (HU5)",
@@ -43,9 +45,10 @@ public class CuentaController {
     })
     @PostMapping
     public ResponseEntity<CuentaResponse> solicitarAperturaCuenta(
-            @Parameter(description = "ID del cliente autenticado", required = true)
-            @RequestHeader(value = "X-Cliente-Id", required = false) Long clienteId,
             @Valid @RequestBody AperturaCuentaRequest request) {
+
+        String email = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication().getName();
+        Long clienteId = usuarioService.obtenerIdClientePorEmail(email);
 
         CuentaResponse response = cuentaService.solicitarAperturaCuenta(clienteId, request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
@@ -64,10 +67,11 @@ public class CuentaController {
     })
     @GetMapping("/{numeroCuenta}/saldo")
     public ResponseEntity<CuentaResponse> consultarSaldo(
-            @Parameter(description = "ID del cliente autenticado", required = true)
-            @RequestHeader(value = "X-Cliente-Id", required = false) Long clienteId,
             @Parameter(description = "Número de cuenta bancaria a consultar", example = "1234567890", required = true)
             @PathVariable String numeroCuenta) {
+
+        String email = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication().getName();
+        Long clienteId = usuarioService.obtenerIdClientePorEmail(email);
 
         CuentaResponse response = cuentaService.consultarSaldo(clienteId, numeroCuenta);
         return ResponseEntity.ok(response);

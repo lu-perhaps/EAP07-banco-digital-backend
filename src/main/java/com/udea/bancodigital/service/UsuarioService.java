@@ -132,6 +132,11 @@ public class UsuarioService {
         return usuarioMapper.toDTO(usuario, cliente);
     }
 
+    @Transactional(readOnly = true)
+    public Long obtenerIdClientePorEmail(String email) {
+        return buscarPorEmail(email).getClienteId();
+    }
+
     private Usuario buscarPorEmail(String email) {
         return usuarioRepository.findByEmail(email)
                 .orElseThrow(() -> new NegocioException(

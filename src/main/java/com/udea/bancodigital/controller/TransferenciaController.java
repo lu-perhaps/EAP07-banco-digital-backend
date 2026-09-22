@@ -3,6 +3,7 @@ package com.udea.bancodigital.controller;
 import com.udea.bancodigital.DTO.TransferenciaRequest;
 import com.udea.bancodigital.DTO.TransferenciaResponse;
 import com.udea.bancodigital.service.TransferenciaService;
+import com.udea.bancodigital.service.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 public class TransferenciaController {
 
     private final TransferenciaService transferenciaService;
+    private final UsuarioService usuarioService;
 
     @Operation(
             summary = "Realizar transferencia entre cuentas (HU12)",
@@ -56,9 +58,10 @@ public class TransferenciaController {
     })
     @PostMapping
     public ResponseEntity<TransferenciaResponse> realizarTransferencia(
-            @Parameter(description = "ID del cliente autenticado", required = true)
-            @RequestHeader(value = "X-Cliente-Id", required = false) Long clienteId,
             @Valid @RequestBody TransferenciaRequest request) {
+
+        String email = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication().getName();
+        Long clienteId = usuarioService.obtenerIdClientePorEmail(email);
 
         TransferenciaResponse response = transferenciaService.realizarTransferencia(clienteId, request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
